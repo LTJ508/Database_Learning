@@ -1,0 +1,90 @@
+//1st Query
+CREATE DATABASE old_company
+
+//2nd Query
+//import old_company.sql file
+
+//3rd Query
+SELECT *
+FROM emps
+
+//4th
+SELECT Employee_Id, Job_Id, Salary
+FROM emps
+
+//5th
+SELECT Employee_Id AS 'ID', Job_Id, Salary
+FROM emps
+
+//6th
+SELECT Employee_Id AS 'ID', Salary
+FROM emps
+
+//7th
+SELECT Employee_Id AS 'ID', Salary AS 'Monthly Salary', Salary*12 AS 'Anual Salary'
+FROM emps
+
+//8th
+CREATE DATABASE company
+
+//9th
+//import company-1.sql
+
+//10th
+SELECT bdate, address
+FROM employee
+WHERE fname='John' AND lname='Smith'
+
+//11th
+SELECT fname, lname, address
+FROM employee, department
+WHERE dname='Research' AND dno=dnumber
+
+//12th
+SELECT e.fname, e.lname, e.address
+FROM employee as e, department as d
+WHERE d.dname='Research' AND e.dno=d.dnumber
+
+//13th
+SELECT p.pnumber, d.dnumber, e.lname, e.address, e.bdate
+FROM project as p, department as d, employee as e
+WHERE p.dnum = d.dnumber AND e.ssn = d.mgrssn AND p.plocation = 'Stafford'
+
+//14th
+SELECT DISTINCT salary
+FROM employee
+
+//15th
+SELECT e.fname, e.lname
+FROM employee e, employee e1
+WHERE e1.fname = 'Franklin' AND e1.lname = 'Wong' AND e1.ssn = e.superssn
+
+//16th
+SELECT e.lname, e.fname
+FROM employee as e, dependent as d
+WHERE e.ssn = d.essn AND e.fname = d.dependent_name
+
+//17th
+SELECT e.lname, d.mgrstartdate, d1.dependent_name
+FROM employee e, department d, dependent d1
+WHERE d.mgrssn = e.ssn AND e.ssn = d1.essn
+
+//Activity 01:
+SELECT Last_Name, Salary / 4 as 'Weekly Salary', Department_Id
+FROM emps
+
+//Query 0:
+SELECT bdate, address
+FROM employee
+WHERE fname = 'John' AND lname = 'Smith'
+
+//Query 01
+SELECT e.fname, e.lname, e.address
+FROM employee e, department d
+WHERE e.dno = d.dnumber AND d.dname = 'Research'
+
+//Query 02
+SELECT p.pnumber, d.dnumber, e.lname, e.address, e.bdate
+FROM employee e, project p, department d
+WHERE p.plocation = 'Stafford' AND p.dnum = d.dnumber AND d.mgrssn = e.ssn
+

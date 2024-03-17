@@ -1,0 +1,37 @@
+//Query 01
+SELECT Employee_Id, First_Name, Job_Id, Salary
+FROM emps
+WHERE Job_Id = (SELECT Job_Id
+                FROM emps
+                WHERE Employee_Id = 141) AND Salary > (SELECT Salary
+                                                       FROM emps
+                                                       WHERE Employee_Id = 143)
+
+//Query 02
+SELECT Last_Name, Job_Id, Salary
+FROM emps
+WHERE Salary = (SELECT MIN(Salary)
+        FROM emps)
+
+//Query 03
+SELECT Employee_Id, First_Name, Last_Name, Salary
+FROM emps
+WHERE Salary < ANY(SELECT Salary
+                   FROM emps
+                   WHERE Job_Id = 'IT_PROG') AND Job_Id <> 'IT_PROG'
+
+//Query 04
+SELECT Last_Name, Salary
+FROM emps
+WHERE Manager_id IN (SELECT Employee_Id
+                    FROM emps
+                    WHERE Last_Name LIKE '%King%')
+
+//Query 05
+SELECT Employee_Id, Last_Name, Salary
+FROM emps
+WHERE Salary > (SELECT AVG(Salary)
+                FROM emps)
+AND Department_Id = ANY (SELECT Department_Id
+                         FROM emps
+                         WHERE Last_Name LIKE '%u%')

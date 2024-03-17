@@ -1,0 +1,60 @@
+//1st Query
+SELECT e.Employee_Id, e.Last_Name, e.Department_Id, d.Department_id, d.Location_id
+FROM emps e JOIN depts d
+ON (e.Department_Id = d.Department_id);
+
+//2nd Query
+SELECT e.Last_Name, e.Department_Id, d.Department_Name
+FROM emps e JOIN depts d
+ON (e.Department_Id = d.Department_id)
+
+//3rd Query
+SELECT e.Last_Name, d.Department_Id, d.Department_Name
+FROM emps e LEFT JOIN depts d
+ON (e.Department_Id = d.Department_id)
+
+//4th Query
+SELECT e.Last_Name, d.Department_Id, d.Department_Name
+FROM emps e RIGHT JOIN depts d
+ON (e.Department_Id = d.Department_id)
+
+//5th Query
+SELECT e.Last_Name, d.Department_Name, l.Location_id, l.City
+FROM emps e
+JOIN depts d
+ON (e.Department_Id = d.Department_id)
+JOIN locs l
+ON (d.Location_id = l.Location_id)
+WHERE e.Commission_pct IS NOT NULL;
+
+//6th Query
+SELECT AVG(Salary) as 'Average Salary', SUM(Salary) as 'Sum of Salary', MAX(Salary) 'Maximum', MIN(Salary) 'Minimum'
+FROM emps
+
+//7th Query
+SELECT AVG(Salary) as 'Average Salary', SUM(Salary) as 'Sum of Salary', MAX(Salary) 'Maximum', MIN(Salary) 'Minimum'
+FROM emps
+WHERE Job_Id LIKE '%REP'
+
+//8th Query
+SELECT AVG(Salary) as 'Average Salary', SUM(Salary) as 'Sum of Salary', MAX(Salary) 'Maximum', MIN(Salary) 'Minimum', MAX(Hire_Date)
+FROM emps
+WHERE Job_Id LIKE '%REP'
+
+//9th Query
+SELECT COUNT(DISTINCT Department_Id)
+FROM emps
+
+//10th Query
+SELECT e.Last_Name, e.Job_Id, d.Department_id, d.Department_Name
+FROM emps e
+JOIN depts d
+ON (e.Department_Id = d.Department_id)
+JOIN locs l
+ON (d.Location_id = l.Location_id AND l.City = 'Toronto')
+
+//11th Query
+SELECT e.Last_Name, e.Salary, e.Commission_pct
+FROM emps e
+WHERE e.Commission_pct IS NOT NULL
+ORDER BY Salary DESC

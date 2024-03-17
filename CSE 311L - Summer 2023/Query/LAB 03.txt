@@ -1,0 +1,71 @@
+old_company
+
+//1st Query
+SELECT last_name, salary
+FROM emps
+WHERE salary <= 3000;
+
+//2nd Query
+SELECT last_name, job_id, department_id, hire_date
+FROM emps
+ORDER BY hire_date DESC ;
+
+//3rd Query
+SELECT Last_Name, Job_Id, Hire_Date
+FROM emps
+WHERE Hire_Date BETWEEN '1998-02-20' AND '1998-05-01'
+ORDER BY Hire_Date
+
+//4th
+(SELECT p.pnumber, e.lname
+FROM employee e, department d, project p
+WHERE p.dnum = d.dnumber AND d.mgrssn = e.ssn AND e.lname = 'Smith')
+
+UNION
+
+(SELECT pj.pnumber, e1.lname
+ FROM project pj, works_on w, employee e1
+ WHERE pj.pnumber = w.pno AND e1.ssn = w.essn AND e1.lname = 'Smith')
+
+//5th
+SELECT e.fname, e.lname, e.address
+FROM employee e
+WHERE e.dno IN
+
+(SELECT d.dnumber
+FROM department d
+WHERE d.dname = 'Research')
+
+//6th
+SELECT e.fname, e.lname
+FROM employee e
+WHERE e.ssn IN
+ ( SELECT d.essn
+  FROM dependent d
+  WHERE ssn = essn AND e.fname = d.dependent_name)
+
+//7th
+SELECT fname, lname
+FROM employee
+WHERE address LIKE '%Houston TX%'
+
+//8th
+SELECT last_name
+FROM emps
+WHERE last_name LIKE '_o%';
+
+//9th
+SELECT Last_Name, Salary, Commission_pct
+FROM emps
+WHERE Commission_pct IS NOT NULL
+ORDER BY Salary DESC, Commission_pct DESC
+
+//10th
+SELECT Last_Name
+FROM emps
+WHERE Last_Name LIKE '%a%' AND Last_Name LIKE '%e%'
+
+//Activity 01
+SELECT Last_Name, Hire_Date
+FROM emps
+WHERE Hire_Date LIKE '1994%'

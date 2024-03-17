@@ -1,0 +1,46 @@
+CREATE TABLE Customers(
+    ID INT PRIMARY KEY,
+    First_Name VARCHAR(10),
+    Age INT(2),
+    City VARCHAR(20)
+    )
+
+
+INSERT INTO customers VALUES
+(1, 'Raphael', 31, 'Los Angeles'),
+(2, 'Abbott', 22, 'New York'),
+(3, 'Eren', 22, 'Ohio'),
+(4, 'Ackerman', 25, 'Ohio'),
+(5, 'Fei-Fei', 28, 'Taipei');
+
+
+CREATE TABLE Orders(
+    Order_ID INT PRIMARY KEY,
+    Amount DECIMAL(6,2),
+    Customer_ID INT)
+
+INSERT INTO orders VALUES
+(1, 200, 1),
+(2, 500, 4),
+(3, 300, 2);
+
+
+SELECT *
+FROM customers
+WHERE ID IN
+
+(SELECT DISTINCT Customer_ID
+ FROM orders)
+
+SELECT Age
+FROM customers
+WHERE Age IN
+
+(SELECT MIN(Age)
+ FROM customers)
+ 
+ ORDER BY Age;
+
+SELECT First_Name, City
+FROM customers
+WHERE City = 'Ohio'
